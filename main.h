@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define BUFFER 1024 
+
 /* C programming header files */
 #include <stdio.h>
 #include <stdlib.h>

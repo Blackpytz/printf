@@ -72,31 +72,42 @@ int print_cent(va_list ap)
 */
 int print_int(va_list ap)
 {
-	int num, divisor;
-	int count = 0;
+	char buf[BUFFER], reversedbuf[BUFFER];
+	int i, j, number, digit, index = 0, count = 0, isNegative = 0;
 
-	num = va_arg(ap, int);
-	if (num < 0)
+	number = va_arg(ap, int);
+
+	/* Handle negative numbers */
+	if (number < 0)
 	{
-		_putchar('-');
-		num = -num;
+		isNegative = 1;
+		number = -number; /* Make the number positive for processing */
 	}
 
-	if (num == 0)
+	/* Handle the case of the number being zero explicitly */
+	if (number == 0)
 	{
-		_putchar('0');
-		return (1);
+		buf[index++] = '0';
 	}
-	divisor = 1;
-	while (num / divisor > 9)
-		divisor *= 10;
+	else
+	{
+	/* Convert the number to characters from right to left */
+		while (number > 0)
+		{
+			digit = number % 10;
+			buf[index++] = '0' + digit;
+			number /= 10;
+		}
+	}
+	/* Add the negative sign if necessary */
+	if (isNegative)
+		buf[index++] = '-';
+	/* Reverse the buffer to get the correct order of digits */
+	j = 0;
 
-	while (divisor > 0)
-	{
-		_putchar('0' + (num / divisor));
-		count++;
-		num %= divisor;
-		divisor /= 10;
-	}
+	for (i = index - 1; i >= 0; i--)
+		reversedbuf[j++] = buf[i];
+	write(1, reversedbuf, j);
+
 	return (count);
 }
