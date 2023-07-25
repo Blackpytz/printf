@@ -43,4 +43,7 @@ int print_int(va_list);
 /* Fuction prototype to print reversed strings */
 int print_reversed_str(va_list);
 
+/* Function prototype to print the rot 13'ed string */
+int print_rot(va_list);
+
 #endif /* MAIN_H */
