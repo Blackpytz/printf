@@ -30,19 +30,20 @@ int print_char(va_list ap)
 int print_str(va_list ap)
 {
 	char *str;
-	int i = 0, count = 0;
+	int count = 0;
 
 	str = va_arg(ap, char *);
-	if (str != NULL)
+	if (str == NULL)
 	{
-		while (*(str + i) != '\0')
-		{
-			count += write(1, &str[i], 1);
-			i++;
-		}
-		return (count);
+		write(1, "(null)", 6);
+		return (0);
 	}
-	return (0);
+	while (str[count] != '\0')
+	{
+		write(1, &str[count], 1);
+		count++;
+	}
+	return (count);
 }
 
 /**
