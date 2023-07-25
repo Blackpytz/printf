@@ -55,11 +55,11 @@ int print_cent(va_list ap)
 {
 	char c;
 	int count = 0;
+	(void)ap;
 
-	c = (char)va_arg(ap, int);
 	c = '%';
 
-	count += write(1, &c, 1);
+	count = write(1, &c, 1);
 	return (count);
 }
 
