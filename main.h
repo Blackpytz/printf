@@ -12,11 +12,17 @@
 * @type: pointer to an array of characters
 * @f: pointer to a function.
 */
-typedef struct func
+struct func
 {
 	char *type;
 	int (*f)(va_list);
-} func_t;
+};
+
+/**
+* struct func - struct type
+* @func_t: struct variable
+*/
+typedef struct func func_t;
 
 int _printf(const char *format, ...);
 int (*check_specifier(const char *s))(va_list);
