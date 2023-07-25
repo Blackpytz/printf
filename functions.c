@@ -63,3 +63,53 @@ int print_cent(va_list ap)
 	count = write(1, &c, 1);
 	return (count);
 }
+
+/**
+* print_int - prints integers
+* @ap: variadic parameter
+*
+* Return: number of digits printed
+*/
+int print_int(va_list ap)
+{
+	char buf[BUFFER], reversedbuf[BUFFER];
+	int i, j, number, digit, index = 0, count = 0, isNegative = 0;
+
+	number = va_arg(ap, int);
+
+	/* Handle negative numbers */
+	if (number < 0)
+	{
+		isNegative = 1;
+		number = -number; /* Make the number positive for processing */
+	}
+	/* Handle the case of the number being zero explicitly */
+	if (number == 0)
+	{
+		buf[index++] = '0';
+	}
+	else
+	{
+	/* Convert the number to characters from right to left */
+		while (number > 0)
+		{
+			digit = number % 10;
+			buf[index++] = '0' + digit;
+			number /= 10;
+		}
+	}
+	/* Add the negative sign if necessary */
+	if (isNegative)
+		buf[index++] = '-';
+	/* Reverse the buffer to get the correct order of digits */
+	j = 0;
+
+	for (i = index - 1; i >= 0; i--)
+	{
+		reversedbuf[j++] = buf[i];
+		count++;
+	}
+	write(1, reversedbuf, j);
+
+	return (count);
+}
