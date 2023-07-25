@@ -38,10 +38,11 @@ int print_str(va_list ap)
 		write(1, "(null)", 6);
 		return (0);
 	}
-	while (str[count] != '\0')
+	while (*str)
 	{
-		write(1, &str[count], 1);
+		write(1, str, 1);
 		count++;
+		str++;
 	}
 	return (count);
 }
