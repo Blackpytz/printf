@@ -76,14 +76,13 @@ int print_int(va_list ap)
 	int i, j, number, digit, index = 0, count = 0, isNegative = 0;
 
 	number = va_arg(ap, int);
-
+	
 	/* Handle negative numbers */
 	if (number < 0)
 	{
 		isNegative = 1;
 		number = -number; /* Make the number positive for processing */
 	}
-
 	/* Handle the case of the number being zero explicitly */
 	if (number == 0)
 	{
@@ -106,7 +105,10 @@ int print_int(va_list ap)
 	j = 0;
 
 	for (i = index - 1; i >= 0; i--)
+	{
 		reversedbuf[j++] = buf[i];
+		count++;
+	}
 	write(1, reversedbuf, j);
 
 	return (count);
